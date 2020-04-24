@@ -8,7 +8,7 @@ In this Repo, I use MIP to find the shortest way to visit all European capitals.
 
 ## To Get Started
 
-First create an environment (for example using conda) and install` the required packages from requirements.txt:
+First create an environment (for example using conda) and install the required packages from requirements.txt:
 
 ```
 conda create --name [environment_name]
@@ -32,4 +32,4 @@ To get a list of all European capitals with their geographical position (lattitu
 python data_retrieval.py
 ```
 
-This create a CSV-file **EU_capitals.csv**.
+This creates a CSV-file **EU_capitals.csv**.
