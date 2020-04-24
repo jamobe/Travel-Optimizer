@@ -44,6 +44,52 @@ start = 'Iceland'
 end = 'Cyprus'
 ```
 
+### Calulcate Distance Matrix
+The Distance Matrix is calculated for all European capitals:
+
+```python
+dist = [[distance.distance((df.lat[i],df.long[i]),(df.lat[j],df.long[j])).km for j in range(len(df))] for i in range(len(df))]
+```
+
+### Define Model and Constraints
+1. X represents a matrix of zeros and ones, which indicates if a vertix between two nodes/capitals (i,j) exists (=1) or not (=0)
+2. Y represents a list of numbers, which indicate the 'traveling'-sequence of the nodes/capitals.
+
+objective: the 'traveling'-route should have a minimized distance
+
+contraints: 
+- each node should only be entered once (except starting node is entered zero times)
+- each node should only be left once (except end point is left zero times)
+- it should be one route and no subroutes
+
+```python
+from itertools import product
+from mip import Model, xsum, minimize, BINARY
+
+n = len(dist) 
+V = set(range(len(dist)))
+
+model = Model()
+
+x = [[model.add_var(var_type=BINARY) for j in V] for i in V]
+
+y = [model.add_var() for i in V]
+
+model.objective = minimize(xsum(dist[i][j]*x[i][j] for i in V for j in V))
+
+for i in V-{id_end}:
+    model += xsum(x[i][j] for j in V - {i}) == 1
+
+for i in V-{0}:
+    model += xsum(x[j][i] for j in V - {i}) == 1
+
+for (i, j) in product(V - {0}, V - {0}):
+    if i != j:
+        model += y[i] - (n+1)*x[i][j] >= y[j]-n
+
+model.optimize()
+```
+
 
 ## To Visualize the Route
 Ploty Scattermapbox is used to visualize the optimized route:
