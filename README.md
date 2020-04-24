@@ -33,3 +33,39 @@ python data_retrieval.py
 ```
 
 This creates a CSV-file **EU_capitals.csv**.
+
+
+## To Optimize the Model
+The model can be found in **travel_europe.ipynb**.
+The start and end point can be changed in the file:
+
+```
+start = 'Iceland'
+end = 'Cyprus'
+```
+
+
+## To Visualize the Route
+Ploty Scattermapbox is used to visualize the optimized route:
+
+```python
+import plotly
+import plotly.graph_objects as go
+
+fig = go.Figure(go.Scattermapbox(
+    mode = "markers+lines",
+    text = df.loc[order].capital,
+    lon = df.loc[order].long,
+    lat = df.loc[order].lat,
+    marker = {'size': 10}))
+
+fig.update_layout(
+    margin ={'l':0,'t':0,'b':0,'r':0},
+    mapbox = {
+        'center': {'lon': df['long'].mean(), 'lat': df['lat'].mean()},
+        'style': "stamen-terrain",
+        'zoom': 2.3})
+```
+The results are shown here:
+
+![alt text](assets/example.png "Example Route (Iceland-Cyprus)")
