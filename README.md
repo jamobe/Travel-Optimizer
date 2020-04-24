@@ -1,6 +1,6 @@
 # Travel-Optimizer
 
-In this Repo, I use MIP to find the shortest way to visit all European capitals. This is done in two steps:
+In this Repo, I use MIP to find the shortest way to visit all European capitals. This is done in three steps:
 
 1. Get all European Capitals and their geographical position (lattitude/longitude)
 2. Optimize a MIP to find the shortest route to visit all capitals
