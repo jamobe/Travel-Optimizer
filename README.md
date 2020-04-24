@@ -70,19 +70,15 @@ n = len(dist)
 V = set(range(len(dist)))
 
 model = Model()
-
 x = [[model.add_var(var_type=BINARY) for j in V] for i in V]
-
 y = [model.add_var() for i in V]
 
 model.objective = minimize(xsum(dist[i][j]*x[i][j] for i in V for j in V))
 
 for i in V-{id_end}:
     model += xsum(x[i][j] for j in V - {i}) == 1
-
 for i in V-{0}:
     model += xsum(x[j][i] for j in V - {i}) == 1
-
 for (i, j) in product(V - {0}, V - {0}):
     if i != j:
         model += y[i] - (n+1)*x[i][j] >= y[j]-n
