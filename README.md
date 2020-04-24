@@ -2,9 +2,9 @@
 
 In this Repo, I use MIP to find the shortest way to visit all European capitals. This is done in three steps:
 
-1. Get all European Capitals and their geographical position (lattitude/longitude)
-2. Optimize a MIP to find the shortest route to visit all capitals
-3. Visualize the Route on a map using Plotly
+1. Get all European capitals and their geographical position (lattitude/longitude)
+2. Define and optimize a MIP model to find the shortest route to visit all capitals
+3. Visualize the route on a map using Plotly
 
 ## To Get Started
 
