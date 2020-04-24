@@ -58,8 +58,8 @@ dist = [[distance.distance((df.lat[i],df.long[i]),(df.lat[j],df.long[j])).km for
 objective: the 'traveling'-route should have a minimized distance
 
 contraints: 
-- each node should only be entered once (except starting node is entered zero times)
-- each node should only be left once (except end point is left zero times)
+- each node should only be entered once (except starting node)
+- each node should only be left once (except end point)
 - it should be one route and no subroutes
 
 ```python
